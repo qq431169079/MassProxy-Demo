@@ -15,11 +15,23 @@ public class ProxyDAO {
     private ProxyMapper mapper;
 
     public int insert(ProxyEntity entity) {
+        if (containsByIp(entity.getIp())) {
+            return 0;
+        }
+
         try {
             return mapper.insert(entity);
         } catch (DuplicateKeyException ex) {
             return 0;
         }
+    }
+
+    public boolean containsByIp(String ip) {
+        LambdaQueryWrapper<ProxyEntity> query = new LambdaQueryWrapper<>();
+        query.select(ProxyEntity::getIp)
+                .eq(ProxyEntity::getIp, ip);
+
+        return mapper.selectOne(query) != null;
     }
 
     public void update(ProxyEntity entity) {
