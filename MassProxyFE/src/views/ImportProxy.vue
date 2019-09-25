@@ -42,6 +42,7 @@
                     data: data
                 }).then(res => {
                     this.$message('添加成功! 当前验证队列任务数: ' + res);
+                    this.data = '';
                 })
             }
         }

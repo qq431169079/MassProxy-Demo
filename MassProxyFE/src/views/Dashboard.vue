@@ -107,6 +107,7 @@
         name: 'Dashboard',
         data() {
             return {
+                query: false,
                 activeNames: ['1', '2', '3', '4'],
                 data: {
                     accNext: '无',
@@ -136,9 +137,11 @@
                     res.accNext = res.accNext === null ? '无' : res.accNext;
                     res.crawlNext = res.crawlNext === null ? '无' : res.crawlNext;
                     this.data = res;
-                    setTimeout(()=> {
-                        this.update();
-                    }, 2000);
+                    if(this.query === true) {
+                        setTimeout(()=> {
+                            this.update();
+                        }, 2000);
+                    }
                 });
             },
             scan() {
@@ -152,8 +155,13 @@
             }
         },
         created() {
+            this.query = true;
             this.update();
+        },
+        destroyed() {
+            this.query = false;
         }
+
     }
 </script>
 

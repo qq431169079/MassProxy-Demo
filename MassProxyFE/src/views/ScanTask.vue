@@ -64,6 +64,9 @@
                     part: part
                 }).then(res => {
                     this.$message('添加成功! 当前扫描队列任务数: ' + res);
+                    this.ipRange = '';
+                    this.portRange = '';
+                    this.part = 10;
                 })
             }
         }
