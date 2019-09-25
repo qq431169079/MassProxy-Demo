@@ -56,7 +56,6 @@ public class TaskManager extends BaseManager {
 
         int okSize = queueDAO.getOkLength();
         int okCount = queueDAO.getOkCount().intValue();
-        System.out.println(okCount);
         int okSpeed = (int) ((okCount - lastOk) / interval);
         lastOk = okCount;
 
